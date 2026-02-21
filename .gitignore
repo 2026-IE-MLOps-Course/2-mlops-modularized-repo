@@ -21,20 +21,32 @@ build/
 .vscode/
 .idea/
 
-# Local artifacts
-models/*
-!models/.gitkeep
-
-# Ignore all data files
+# -----------------------------
+# Data
+# -----------------------------
 data/**
-
-# But keep folder structure
 !data/
 !data/raw/
 !data/processed/
 !data/inference/
-
-# Keep empty folders via .gitkeep
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/inference/.gitkeep
+
+# -----------------------------
+# Models
+# -----------------------------
+models/**
+!models/
+!models/.gitkeep
+
+# -----------------------------
+# Reports
+# -----------------------------
+reports/**
+!reports/
+!reports/.gitkeep
+
+# Python cache
+__pycache__/
+*.pyc
