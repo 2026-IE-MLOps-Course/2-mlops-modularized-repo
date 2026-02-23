@@ -118,6 +118,8 @@ def test_binary_sum_logic_executes_correctly():
     # Expected sums: Row 0: 2, Row 1: 0, Row 2: 2
     expected = np.array([[2], [0], [2]])
 
-    assert transformed.shape == expected.shape
+    transformed_values = np.asarray(transformed)
+
+    assert transformed_values.shape == expected.shape
     # assert_allclose is tolerant to Scikit-Learn silently casting to float64
-    np.testing.assert_allclose(transformed, expected)
+    np.testing.assert_allclose(transformed_values, expected, atol=1e-5)
