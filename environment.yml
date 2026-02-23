@@ -14,4 +14,6 @@ dependencies:
   - lime
   - jupyter
   - ipykernel
+  - pytest
+  - pytest-cov
   - pip
