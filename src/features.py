@@ -45,6 +45,14 @@ def _row_sum_numpy(X) -> np.ndarray:
     return sums
 
 
+def _binary_sum_names_out(estimator, input_features) -> np.ndarray:
+    """
+    Provides a stable column name for the derived binary sum feature.
+    Must be a top-level function so the pipeline can be safely pickled/saved to disk.
+    """
+    return np.array(["binary_sum"])
+
+
 def get_feature_preprocessor(
     quantile_bin_cols: Optional[List[str]] = None,
     categorical_onehot_cols: Optional[List[str]] = None,
@@ -88,9 +96,8 @@ def get_feature_preprocessor(
         quantile_pipe = Pipeline(
             steps=[
                 ("impute", SimpleImputer(strategy="median")),
-                ("qbin", KBinsDiscretizer(n_bins=n_bins,
-                 encode="ordinal", strategy="quantile")),
-                ("scale", StandardScaler()),
+                ("qbin", KBinsDiscretizer(n_bins=n_bins, encode="ordinal", strategy="quantile",
+                                          quantile_method="averaged_inverted_cdf")),
             ]
         )
         transformers.append(
@@ -124,8 +131,7 @@ def get_feature_preprocessor(
                 ("sum", FunctionTransformer(
                     func=_row_sum_numpy,
                     validate=False,
-                    feature_names_out=lambda self, input_features: np.array([
-                                                                            "binary_sum"]),
+                    feature_names_out=_binary_sum_names_out,  # <--- FIXED: No more lambda
                 )),
                 ("scale", StandardScaler()),
             ]
