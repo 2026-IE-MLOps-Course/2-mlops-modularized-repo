@@ -20,6 +20,7 @@ from src.load_data import load_raw_data
 from src.train import train_model
 from src.utils import save_csv, save_model
 from src.validate import validate_dataframe
+from src.evaluate import evaluate_model
 
 # --------------------------------------------------------
 # PATHS & CONFIGURATION
@@ -251,6 +252,17 @@ def main():
         preprocessor=preprocessor,
         problem_type=SETTINGS["problem_type"],
     )
+
+    # 8.5) EVALUATE (Using the Validation split)
+    # Validation guides decisions during development; the Test vault remains mostly untouched.
+    print("[main.main] 8.5) EVALUATE")  # TODO: replace with logging later
+    val_metric = evaluate_model(
+        model=model_pipeline,
+        X_eval=X_val,
+        y_eval=y_val,
+        problem_type=SETTINGS["problem_type"],
+    )
+    print(f"[main.main] Validation metric={val_metric:.4f}")  # TODO: replace with logging later
 
     # 9) SAVE MODEL
     # We save the full pipeline artifact, not just the estimator
