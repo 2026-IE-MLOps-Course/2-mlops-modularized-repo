@@ -137,10 +137,11 @@ jupyter notebook notebooks/01_opioid_analysis_vExp.ipynb
 - Enforced leakage prevention by design through strict split/fit boundaries.
 
 **Upcoming Sessions:**
-- Fully migrate hardcoded `SETTINGS` into `config.yaml` and use `.env` for secrets.
-- Replace `print()` statements with standard library structured **logging**.
-- Add **Weights & Biases (W&B)** for experiment tracking and model registry.
-- Containerize the environment using **Docker** and serve predictions via a **FastAPI** application.
-- Implement Continuous Integration (CI) quality checks using **GitHub Actions**.
-- Deploy the live service to **Render**
-- Implement data version control with **DVC**
+- Migrate all hardcoded `SETTINGS` into `config.yaml` and use `.env` for secrets
+- Replace `print()` statements with Python standard library **logging** (consistent, structured, reusable across modules)
+- Add **Weights & Biases (W&B)** for experiment tracking, including basic data fingerprinting for provenance
+- Use **W&B artifacts and model registry** to register and retrieve a pinned model version for reproducible inference
+- Serve predictions via a **FastAPI** application with a clear request and response contract and a `/health` endpoint
+- Containerize the inference service with **Docker** and validate it runs locally end to end
+- Implement Continuous Integration (CI/CD) quality checks using **GitHub Actions**
+- Deploy the live service to **Render** with automated deploys
