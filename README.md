@@ -2,6 +2,7 @@
 
 ![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![MLOps Standard](https://img.shields.io/badge/MLOps-Modular-success)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/2026-IE-MLOps-Course/2-mlops-modularized-repo#next-steps)
 
 **Author:** MLOps Instructor (Ivan Diaz)  
 **Course:** MLOps: Master in Business Analytics and Data Science  
